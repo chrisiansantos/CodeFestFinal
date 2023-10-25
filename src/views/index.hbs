@@ -1,0 +1,85 @@
+<div class="card bg-dark text-white">
+
+  <div class="card-header d-flex align-items-center ">
+    <span class="material-icons me-2">
+      cloud_upload
+    </span>
+    Subir una Publicación
+  </div>
+
+  {{! IMAGE UPLOAD FORM }}
+  <div class="card-body p-5">
+    <form action="/images" method="POST" enctype="multipart/form-data">
+
+      <div class="mb-4">
+        <input
+          type="file"
+          name="image"
+          class="form-control bg-light text-white border border-danger"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <input
+          type="text"
+          name="title"
+          class="form-control bg-light text-white border border-danger"
+          placeholder="Titulo de la Publicación"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <textarea
+          name="description"
+          rows="2"
+          class="form-control bg-light text-white border border-danger"
+          placeholder="Descripción de la Publicación"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-danger">
+          <i class="fa fa-upload"></i>
+          Subir Publicación
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="card mt-2 bg-dark text-white">
+  <div class="card-header d-flex align-items-center">
+    <span class="material-icons me-2">
+      cloud
+    </span>
+    Publicaciones recientes
+  </div>
+  <div class="card-body p-5">
+    <div class="row">
+      {{#each images}}
+        <div class="col-md-4 text-center">
+          <a href="/images/{{uniqueId}}">
+            <img
+              src="/uploads/{{filename}}"
+              alt="{{title}}"
+              class="w-100 h-100"
+              style="object-fit: cover;"
+            />
+          </a>
+        </div>
+      {{else}}
+        <div class="text-light text-center p-5">
+          <h1 class="text-light">No hay publicaciones <strong>yet</strong></h1>
+          <p>Sube tu primera publicación</p>
+          <span class="material-icons" style="font-size: 7rem;">
+            add_a_photo
+          </span>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
